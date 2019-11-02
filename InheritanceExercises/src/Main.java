@@ -1,3 +1,5 @@
+// ONLY FOR TASK ANIMALS
+
 import animals.*;
 
 import java.io.BufferedReader;
