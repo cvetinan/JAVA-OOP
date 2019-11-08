@@ -14,7 +14,7 @@ public class Main {
         while (!input.equals("End")){
             String[] tokens = input.split(" ");
             if (tokens.length == 2){
-                Robot robot = new Robot(tokens[1], tokens[0]);
+                Robot robot = new Robot(tokens[0], tokens[1]);
                 robots.add(robot);
             } else {
                 Citizen citizen = new Citizen(tokens[0], Integer.parseInt(tokens[1]), tokens[2]);
