@@ -1,4 +1,4 @@
-package millitary.army;
+package military.interfaces;
 
 public interface Soldier {
     int getId();
