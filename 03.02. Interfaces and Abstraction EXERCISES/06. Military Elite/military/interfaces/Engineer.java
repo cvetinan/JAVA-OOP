@@ -1,6 +1,6 @@
 package military.interfaces;
 
-import military.army.Repair;
+import military.entities.Repair;
 
 import java.util.Collection;
 

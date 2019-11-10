@@ -1,6 +1,6 @@
 package military;
 
-import military.army.*;
+import military.entities.*;
 import military.enumaration.Corp;
 import military.enumaration.State;
 import military.interfaces.Commando;

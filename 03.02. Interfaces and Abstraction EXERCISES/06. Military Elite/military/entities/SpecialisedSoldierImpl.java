@@ -1,4 +1,4 @@
-package military.army;
+package military.entities;
 
 import military.enumaration.Corp;
 import military.interfaces.SpecialisedSoldier;

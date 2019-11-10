@@ -1,6 +1,6 @@
 package military.interfaces;
 
-import military.army.Mission;
+import military.entities.Mission;
 
 import java.util.Collection;
 

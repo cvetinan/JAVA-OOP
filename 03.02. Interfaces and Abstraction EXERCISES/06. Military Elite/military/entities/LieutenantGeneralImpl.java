@@ -1,4 +1,4 @@
-package military.army;
+package military.entities;
 
 import military.interfaces.LeutenantGeneral;
 import military.interfaces.Private;
