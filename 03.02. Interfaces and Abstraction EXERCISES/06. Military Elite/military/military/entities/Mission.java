@@ -18,6 +18,18 @@ public class Mission {
     public State getState() {
         return this.state;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null || obj.getClass()!= this.getClass())
+            return false;
+        Mission mission = (Mission) obj;
+        return (mission.codeName.equals(this.codeName) && mission.getState().toString().equals(this.getState().toString()));
+    }
+
+    @Override
+    public int hashCode() {
+        return this.codeName.hashCode() * 17 + this.state.toString().hashCode();
+    }
 
     @Override
     public String toString() {

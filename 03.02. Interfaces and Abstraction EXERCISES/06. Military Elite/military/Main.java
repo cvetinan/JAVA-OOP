@@ -1,5 +1,3 @@
-package military;
-
 import military.entities.*;
 import military.enumaration.Corp;
 import military.enumaration.State;
