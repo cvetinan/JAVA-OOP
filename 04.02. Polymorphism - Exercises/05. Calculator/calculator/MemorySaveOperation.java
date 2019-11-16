@@ -1,6 +1,5 @@
 package calculator;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class MemorySaveOperation implements Operation {
@@ -17,6 +16,7 @@ public class MemorySaveOperation implements Operation {
 
     @Override
     public int getResult() {
+
         return this.memory.peek();
     }
 
