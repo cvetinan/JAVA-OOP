@@ -17,6 +17,13 @@
       </list>
     </option>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1TiAOEYtdtRhQBlNvtwmiSNwbD5" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -66,7 +73,7 @@
       <workItem from="1573932509103" duration="4675000" />
       <workItem from="1573995701730" duration="597000" />
       <workItem from="1574017682779" duration="8000" />
-      <workItem from="1574017887908" duration="20293000" />
+      <workItem from="1574017887908" duration="28799000" />
     </task>
     <servers />
   </component>
