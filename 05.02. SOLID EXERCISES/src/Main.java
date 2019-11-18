@@ -7,6 +7,11 @@ import loggerLib.loggers.interfaces.Logger;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +22,7 @@ public class Main {
         Appender appender = new SocketAppender(layout);
         Logger logger = new MessageLogger(appender);
 
-        String currentDateTime = String.valueOf(LocalDateTime.now());
+        String currentDateTime = getCurrentDateTime();
         logger.logInfo(currentDateTime, "Connection successful!");
 
 
@@ -85,5 +90,12 @@ public class Main {
         line = scanner.nextLine();
         }
         System.out.println(logger.toString());*/
+    }
+
+    private static String getCurrentDateTime() {
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/uuuu HH:MM");
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        return localDateTime.format(formatters);
     }
 }
