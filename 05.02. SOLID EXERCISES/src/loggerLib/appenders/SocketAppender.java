@@ -27,10 +27,16 @@ public class SocketAppender extends AppenderImpl {
         in = new BufferedReader(new InputStreamReader(client.getInputStream()));
     }
 
-    public String sendMessage(String msg) throws IOException {
+    private void sendMessage(String msg) throws IOException {
         out.println(msg);
-        String resp = in.readLine();
-        return resp;
+        //in.readLine();
+        stopConnection();
+    }
+
+    public void stopConnection() throws IOException {
+        in.close();
+        out.close();
+        client.close();
     }
 
     @Override

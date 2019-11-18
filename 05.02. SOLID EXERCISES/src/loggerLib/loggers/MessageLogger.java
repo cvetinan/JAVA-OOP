@@ -53,7 +53,6 @@ public class MessageLogger implements Logger {
             builder.append(appender.toString());
             builder.append(System.lineSeparator());
         }
-
         return builder.toString().trim();
     }
 }

@@ -1,5 +1,6 @@
 import loggerLib.appenders.ConsoleAppender;
 import loggerLib.appenders.FileAppender;
+import loggerLib.appenders.SocketAppender;
 import loggerLib.appenders.interfaces.Appender;
 import loggerLib.enumarations.ReportLevel;
 import loggerLib.layouts.SimpleLayout;
@@ -15,19 +16,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        /***
-         * @see
-         * FOR TESTING SOCKET CONNECTION THRU SOCKET TEST
-         * IMPORTANT If it's started connection, we have to disconnect from server to receive the output on the 
-         * console/file.
-         * TO USE SOCKET REMOVE THE COMMENT TAG
-         */
-//         Layout layoutForSocket = new XmlLayout();
-//         Appender appenderForSocket = new SocketAppender(layoutForSocket);
-//         Logger loggerForSocket = new MessageLogger(appenderForSocket);
-//
-//         String currentDateTime = getCurrentDateTime();
-//         loggerForSocket.logInfo(currentDateTime, "Connection successful!");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -37,23 +25,27 @@ public class Main {
 
         while (lines-- > 0) {
             String[] tokens = scanner.nextLine().split("\\s+");
-            // instead of using fixed dateTime from console we can use LocalDateTime -->
-            // --> String currentDateTime = getCurrentDateTime();
 
             Layout layout = null;
 
             if (tokens[1].equals("SimpleLayout")) {
                 layout = new SimpleLayout();
-            } else {
+            } else if (tokens[1].equals("XmlLayout")) {
                 layout = new XmlLayout();
             }
 
             Appender appender = null;
 
-            if (tokens[0].equals("ConsoleAppender")) {
-                appender = new ConsoleAppender(layout);
-            } else if (tokens[0].equals("FileAppender")) {
-                appender = new FileAppender(layout);
+            switch (tokens[0]) {
+                case "ConsoleAppender":
+                    appender = new ConsoleAppender(layout);
+                    break;
+                case "FileAppender":
+                    appender = new FileAppender(layout);
+                    break;
+                case "SocketAppender":
+                    appender = new SocketAppender(layout);
+                    break;
             }
 
             if (tokens.length == 3) {
@@ -70,22 +62,23 @@ public class Main {
 
         while (!line.equals("END")) {
             String[] tokens = line.split("\\|");
-
+            String currentDateTime = getCurrentDateTime();
+            String message = tokens[1];
             switch (ReportLevel.valueOf(tokens[0])) {
                 case INFO:
-                    logger.logInfo(tokens[1], tokens[2]);
+                    logger.logInfo(currentDateTime, message);
                     break;
                 case WARNING:
-                    logger.logWarning(tokens[1], tokens[2]);
+                    logger.logWarning(currentDateTime, message);
                     break;
                 case ERROR:
-                    logger.logError(tokens[1], tokens[2]);
+                    logger.logError(currentDateTime, message);
                     break;
                 case CRITICAL:
-                    logger.logCritical(tokens[1], tokens[2]);
+                    logger.logCritical(currentDateTime, message);
                     break;
                 case FATAL:
-                    logger.logFatal(tokens[1], tokens[2]);
+                    logger.logFatal(currentDateTime, tokens[1]);
                     break;
             }
             line = scanner.nextLine();
@@ -94,7 +87,7 @@ public class Main {
     }
 
     private static String getCurrentDateTime() {
-        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/uuuu HH:MM:SS");
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/uuuu HH:MM:ss");
         LocalDateTime localDateTime = LocalDateTime.now();
 
         return localDateTime.format(formatters);
