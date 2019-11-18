@@ -94,7 +94,7 @@ public class Main {
     }
 
     private static String getCurrentDateTime() {
-        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/uuuu HH:MM");
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/uuuu HH:MM:SS");
         LocalDateTime localDateTime = LocalDateTime.now();
 
         return localDateTime.format(formatters);
