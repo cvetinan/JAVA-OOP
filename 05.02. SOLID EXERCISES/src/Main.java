@@ -1,5 +1,9 @@
+import loggerLib.appenders.ConsoleAppender;
+import loggerLib.appenders.FileAppender;
 import loggerLib.appenders.SocketAppender;
 import loggerLib.appenders.interfaces.Appender;
+import loggerLib.enumarations.ReportLevel;
+import loggerLib.layouts.SimpleLayout;
 import loggerLib.layouts.XmlLayout;
 import loggerLib.layouts.interfaces.Layout;
 import loggerLib.loggers.MessageLogger;
@@ -7,39 +11,39 @@ import loggerLib.loggers.interfaces.Logger;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        /***
+         *
+         * FOR TESTING SOCKET CONNECTION THRU SOCKET TEST
+         *
+         Layout layout = new XmlLayout();
+         Appender appender = new SocketAppender(layout);
+         Logger logger = new MessageLogger(appender);
+
+         String currentDateTime = getCurrentDateTime();
+         logger.logInfo(currentDateTime, "Connection successful!");
+
+         */
+
+
+
+
         Scanner scanner = new Scanner(System.in);
 
-        Layout layout = new XmlLayout();
-        Appender appender = new SocketAppender(layout);
-        Logger logger = new MessageLogger(appender);
-
-        String currentDateTime = getCurrentDateTime();
-        logger.logInfo(currentDateTime, "Connection successful!");
-
-
-        /***
-         * @implNote
-         * This main method used before create SocketAppender,
-         * hidden while testing SocketAppender Implementation
-         *
-         * @hidden
         int lines = Integer.parseInt(scanner.nextLine());
         Appender[] appenders = new Appender[lines];
         int index = 0;
 
         while (lines-- > 0) {
-        String[] tokens = scanner.nextLine().split("\\s+");
+            String[] tokens = scanner.nextLine().split("\\s+");
+            // instead of using fixed dateTime from console we can use LocalDateTime -->
+            // --> String currentDateTime = getCurrentDateTime();
 
-        Layout layout = null;
+            Layout layout = null;
 
         if (tokens[1].equals("SimpleLayout")) {
         layout = new SimpleLayout();
@@ -89,7 +93,7 @@ public class Main {
         }
         line = scanner.nextLine();
         }
-        System.out.println(logger.toString());*/
+        System.out.println(logger.toString());
     }
 
     private static String getCurrentDateTime() {
